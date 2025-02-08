@@ -1,8 +1,19 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
+from flask_cors import CORS
 import numpy as np
 from app import find_nearest_cat, scaler  # Import function and scaler from app.py
 
 app = Flask(__name__)
+CORS(app)
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    #display html file
+    return send_from_directory('','www/index.html')
+    
+@app.route('<path:path>')
+def send_report(path):
+    # Using request args for path will expose you to directory traversal attacks
+    return send_from_directory('website', path)
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -12,7 +23,7 @@ def predict():
         age = float(data.get("age"))
         weight = float(data.get("weight"))
         activity_level = data.get("activity_level").lower()
-
+        print("hi", age, weight, activity_level)
         # Validate activity level
         if activity_level not in ['high', 'low', 'moderate']:
             return jsonify({"error": "Invalid activity level! Must be 'high', 'low', or 'moderate'."}), 400
@@ -32,4 +43,4 @@ def predict():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=3000, debug=True)

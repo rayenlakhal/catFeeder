@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CatFeeder</title>
+    <link rel="shortcut icon" href="fav.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container1 {
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            display: block;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        option {
+            color: black;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px;
+            background: #ff5733;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background: #e04e2e;
+            transform: scale(1.05);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .container {
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            text-align: left;
+            display: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #444;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .highlight {
+            color: #ffcc00;
+        }
+
+        .tip {
+            background: rgba(255, 204, 0, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="c">
+        <h2>🐱 Daily Meal Plan For : <span id="cn"></span> </h2>
+        <p><span class="highlight">💡 Daily Calories Needed:</span> <span id="cal"></span> </p>
+        <table>
+            <tr>
+                <th>Meal</th>
+                <th>Food</th>
+                <th>Portion</th>
+                <th>Calories</th>
+            </tr>
+            <tr>
+                <td>🍳 Breakfast</td>
+                <td id="b"></td>
+                <td id="bp">(Portion)</td>
+                <td id="bc">(Calories)</td>
+            </tr>
+            <tr>
+                <td>🥗 Lunch</td>
+                <td id="l">(AI-selected meal)</td>
+                <td id="lp">(Portion)</td>
+                <td id="lc">(Calories)</td>
+            </tr>
+            <tr>
+                <td>🍽️ Dinner</td>
+                <td id="d">(AI-selected meal)</td>
+                <td id="dp">(Portion)</td>
+                <td id="dc">(Calories)</td>
+            </tr>
+            <tr>
+                <td>💧 Water Goal</td>
+                <td> <span id="w"></span> <span>ml</span> </td>
+                <td>--</td>
+                <td>--</td>
+            </tr>
+        </table>
+        <div class="tip">
+            💡 Recommendation: <span id="re"></span>
+        </div>
+    </div>
+    <div class="container1" id="c1">
+        <img src="fav.png" width="100px" height="100px">
+        <h2>Generate a Diet for Your Cat</h2>
+        <div>
+            <label for="name">🐾 Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="age">🎂 Age (years or months):</label>
+            <input type="text" id="age" name="age" required>
+
+            <label for="weight">⚖️ Weight (kg/lbs):</label>
+            <input type="text" id="weight" name="weight" required>
+
+            <label for="activity">⚡ Activity Level:</label>
+            <select id="activity" name="activity">
+                <option value="low">Low</option>
+                <option value="moderate">Moderate</option>
+                <option value="high">High</option>
+            </select>
+
+            <button onclick="gen()">Generate Diet Plan</button>
+        </div>
+    </div>
+
+    <script>
+
+        async function gen() {
+            name = document.getElementById("name").value;
+            age = document.getElementById("age").value;
+            weight = document.getElementById("weight").value;
+            activity = document.getElementById("activity").value;
+            document.getElementById("c1").style.display = "none";
+            document.getElementById("c").style.display = "block";
+
+            const url = "http://127.0.0.1:3000/predict";
+
+            const data = {
+                age: age,
+                weight: weight,
+                activity_level: activity
+            };
+            try {
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                console.log(result);
+                document.getElementById("cn").innerHTML= name;
+                document.getElementById("cal").innerHTML= result["Daily Calories"];
+
+                document.getElementById("b").innerHTML= result.Meals.Breakfast.Food;
+                document.getElementById("bp").innerHTML= result.Meals.Breakfast["Portion (g)"] ;
+                document.getElementById("bc").innerHTML= result.Meals.Breakfast.Calories;
+
+                document.getElementById("l").innerHTML= result.Meals.Lunch.Food;
+                document.getElementById("lp").innerHTML= result.Meals.Lunch["Portion (g)"]  ;
+                document.getElementById("lc").innerHTML= result.Meals.Lunch.Calories;
+
+                document.getElementById("d").innerHTML= result.Meals.Dinner.Food;
+                document.getElementById("dp").innerHTML= result.Meals.Dinner["Portion (g)"] ;
+                document.getElementById("dc").innerHTML= result.Meals.Dinner.Calories;
+
+                document.getElementById("w").innerHTML= result["Water Goal (ml)"];
+
+                document.getElementById("re").innerHTML= result.Recommendation;
+
+            } catch (error) {
+                console.error("Error:", error);
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>
