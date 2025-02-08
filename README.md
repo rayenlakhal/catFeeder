@@ -5,18 +5,6 @@
             <meta charset="UTF-8">
             <title>1&period; Pr&eacute;sentation du Projet</title>
             <style>
-/* From extension vscode.github */
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-
-.vscode-dark img[src$=\#gh-light-mode-only],
-.vscode-light img[src$=\#gh-dark-mode-only],
-.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
-.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
-	display: none;
-}
 
 </style>
     <script type="module">
@@ -141,7 +129,7 @@
 
 </style>
         
-        </head>
+</head>
         <body class="vscode-body vscode-light">
           <p><strong>Project: Artificial Intelligence for the Prescription of a Diet Plan for Cats</strong></p>
           <h2 id="1-project-presentation">1. Project Presentation</h2>
@@ -161,7 +149,6 @@
           </ul>
           <p>The goal of our project is to develop an artificial intelligence capable of reproducing this diagnostic and diet prescription process. We have collected and processed a database of nearly 2000 cats, including their characteristics and the diet prescriptions provided by a veterinarian.</p>
           <p>Thus, our artificial intelligence model can issue a precise diagnosis based on the data entered by a user regarding their own cat.</p>
-          
           <h2 id="2-project-steps">2. Project Steps</h2>
           <h3 id="data-collection-and-processing">Data Collection and Processing</h3>
           <ol>
@@ -179,32 +166,27 @@
               </li>
               <li><strong>Data cleaning and preparation</strong>: Removal of outliers, conversion of units, and standardization of data to ensure consistency.</li>
           </ol>
-          
           <h3 id="modeling-with-k-nearest-neighbors-k-nn">Modeling with k-Nearest Neighbors (k-NN)</h3>
           <h4 id="algorithm-choice">Algorithm Choice</h4>
           <p>We opted for an <strong>unsupervised machine learning</strong> model based on the <strong>k-Nearest Neighbors (k-NN)</strong> algorithm to recommend an optimal diet plan based on the cat's characteristics (age, weight, activity level).</p>
-          
           <h4 id="training-and-validation">Training and Validation</h4>
           <ul>
               <li><strong>Data preprocessing</strong>: Normalization of features (<code>Age</code>, <code>Weight</code>, <code>Activity Level</code>) with <code>MinMaxScaler</code> to improve prediction accuracy.</li>
               <li><strong>Model construction</strong>: Use of <code>NearestNeighbors(n_neighbors=1, algorithm='ball_tree')</code> to find the most similar cat in the database.</li>
               <li><strong>Evaluation</strong>: Recommendations are based on the closest cat in terms of characteristics.</li>
           </ul>
-          
-          <h4 id="optimization-and-adjustments">Optimization and Adjustments</h4>
+           <h4 id="optimization-and-adjustments">Optimization and Adjustments</h4>
           <ul>
               <li><strong>Encoding categorical variables</strong> (activity level) with <code>LabelEncoder</code> to ensure better compatibility with the algorithm.</li>
               <li><strong>Scaling input and output data</strong> to homogenize values and avoid bias due to different measurement scales.</li>
               <li><strong>Selection of the "ball_tree" algorithm</strong> to optimize the search for the nearest neighbors, particularly suited for small datasets with few dimensions.</li>
           </ul>
-          
-          <h3 id="integration-and-testing">Integration and Testing</h3>
+           <h3 id="integration-and-testing">Integration and Testing</h3>
           <ol start="7">
               <li><strong>Development of a user interface</strong>: We designed an intuitive form allowing users to input their cat's characteristics.</li>
               <li><strong>Prediction of the optimal diet plan</strong>: The model analyzes the entered data and returns a personalized meal plan.</li>
               <li><strong>Result validation</strong>: Testing with real cases to assess the accuracy of the system.</li>
           </ol>
-          
           <h2 id="3-detailed-functioning">3. Detailed Functioning</h2>
           <h3 id="input-data">Input Data</h3>
           <ul>
@@ -212,14 +194,12 @@
               <li><strong>Weight</strong> (kg)</li>
               <li><strong>Activity level</strong> (low, medium, high)</li>
           </ul>
-          
           <h3 id="data-processing">Data Processing</h3>
           <ul>
               <li>Normalization of inputs to match the training data.</li>
               <li>Prediction of the meal plan based on similar cases.</li>
               <li>Generation of a detailed report including the recommended diet and the veterinarian's advice.</li>
           </ul>
-          
           <h3 id="output-example">Output Example</h3>
           <p>For a 3-year-old cat, weighing 4 kg, with moderate activity:</p>
           <pre><code>{
@@ -245,13 +225,10 @@
           "Recommendation": "This cat requires 251 kcal per day. Suggested meal plan: Breakfast (Beef, 67g, 135 kcal) at 7 AM, Lunch (Lamb, 52g, 117 kcal) at 12 PM, Dinner (Beef, 31g, 86 kcal) at 6 PM. Hydration goal: 440 ml per day."
       }
       </code></pre>
-          
-          <h3 id="conclusion">Conclusion</h3>
-          <p>This project combines artificial intelligence and veterinary expertise to provide personalized dietary recommendations for cat owners. By combining a knowledge base validated by professionals and a high-performing machine learning model, we offer a reliable and accessible solution.</p>
+           <h3 id="conclusion">Conclusion</h3>
+          <p>This project combines artificial intelligence and veterinary expertise to provide personalized dietary recommendations for cat owners. By combining a knowledge base validated by professionals and a 		high-performing machine learning model, we offer a reliable and accessible solution.</p>
           <p>Future improvements include integrating new variables (health problems, dietary preferences) and developing a mobile application for a more intuitive use.</p>
-
-
-          <h2> <a href="https://drive.google.com/file/d/1nJrc1OWS7gL-EfrxzG0oGs5zXcZiNH5C/view?usp=sharing">Watch ADD video</a> </h2>
+	 <h2> <a href="https://drive.google.com/file/d/1nJrc1OWS7gL-EfrxzG0oGs5zXcZiNH5C/view?usp=sharing">Watch ADD video</a> </h2>
       </body>
       </html>
       
