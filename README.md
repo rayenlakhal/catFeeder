@@ -101,3 +101,6 @@ Future improvements include integrating new variables (health problems, dietary 
 
 ## Watch Video
 [![Watch ADD video](https://img.shields.io/badge/Watch-ADD%20video-blue?style=for-the-badge&logo=youtube)](https://drive.google.com/file/d/1nJrc1OWS7gL-EfrxzG0oGs5zXcZiNH5C/view?usp=sharing)
+
+## Canva Presentation
+[![Watch prosentation](https://img.shields.io/badge/Watch-ADD%20video-blue?style=for-the-badge&logo=canva)](https://www.canva.com/design/DAGeeF0uNIs/5A08txIJAFdf4nOP0dv5QA/edit?utm_content=DAGeeF0uNIs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
