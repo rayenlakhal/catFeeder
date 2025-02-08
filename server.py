@@ -9,11 +9,6 @@ CORS(app)
 def index():
     #display html file
     return send_from_directory('','www/index.html')
-    
-@app.route('<path:path>')
-def send_report(path):
-    # Using request args for path will expose you to directory traversal attacks
-    return send_from_directory('website', path)
 
 @app.route('/predict', methods=['POST'])
 def predict():
